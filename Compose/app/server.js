@@ -24,11 +24,19 @@ function connectDB() {
   return db;
 }
 
-connectDB();
+const db = connectDB();
 
 // API
 app.get("/", (req, res) => {
   res.send("Hello from Node.js + MySQL + Docker!");
+});
+
+// Users API
+app.get("/users", (req, res) => {
+  db.query("SELECT * FROM users", (err, result) => {
+    if (err) return res.send(err);
+    res.json(result);
+  });
 });
 
 app.listen(3000, () => {
