@@ -1,0 +1,54 @@
+Docker Compose: Compose is used to run multiple CA at a time and also to communicate b/w CA's ectc.Node.js file is used to run the JAVA code in server.
+
+package.json is used to downloaded packahes as which needed and intsll npm (Node Package Manager).npm is a tool to manage packages (libraries) in Node.js
+
+
+[ Docker Compose is used to define and run multi-container applications. It helps in starting multiple containers together and automatically manages networking, allowing containers to communicate using service names.
+In a Node.js project, .js files contain the application logic, while package.json defines the dependencies and configuration required to run that application. Both are necessary because the code depends on external libraries defined in package.json.
+When running docker-compose up --build, Docker Compose reads the YAML file, builds images (using Dockerfile for the app), pulls required images, creates networks and volumes, and starts containers in order. The Node.js container installs dependencies using package.json, runs the application, and communicates with other services like MySQL using Docker networking.]
+
+
+What exactly are APIs?
+
+API stands for Application Programming Interface. It is a way for applications to communicate with each other. In backend systems, APIs expose endpoints that allow clients to send requests and receive responses.
+
+API = Application Programming Interface
+
+👉 In simple words:
+
+An API is a way for one system to talk to another system.
+
+🔥 Very Simple Understanding
+
+Think like this:
+
+You (user) → ask for food
+Waiter → takes request
+Kitchen → prepares food
+
+👉 Here:
+
+Waiter = API (API = Messenger between frontend and backend).
+
+🎨 𝙳𝚘𝚌𝚔𝚎𝚛 𝙲𝚘𝚖𝚙𝚘𝚜𝚎:simple project 
+
+compose/
+│
+├── docker-compose.yml
+├── app/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── server.js
+│
+└── nginx/
+    └── default.conf
+
+
+it is web application. When we type in browser it will go to nginx and forward to app or .js file due to proxy_pass http://app:3000; This app come your docker-compose.yml. app = service name.Then Docker automatically creates a DNS entry
+
+Inside Docker network:
+
+app → resolves to Node.js container IP
+db  → resolves to MySQL container IP
+
+Sends request to Node.js container nothing but  .js   file in that app.get ("/users", ...) handle requests and sent back to Nginx → Browser
